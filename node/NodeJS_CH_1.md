@@ -1,6 +1,6 @@
 # Formation NodeJS
 
-> Ces notes ont été prises pendant mon apprentissage sur Node.JS sur la plateforme de [DYMA.fr](https://dyma.fr) > **En aucun cas ces notes ont pour vocation de voler le travail** réaliser par ces formateurs talentueux, **mais de promouvoir la qualité de leur travail**.
+> Ces notes ont été prises pendant mon apprentissage sur Node.JS sur la plateforme de [DYMA.fr](https://dyma.fr) > **En aucun cas ces notes ont pour vocation de voler le travail** réalisé par ces formateurs talentueux, **mais de promouvoir la qualité de leur travail**.
 > _Si je suis capable de ré-expliquer des notions c'est que leurs formations vaut très franchement le détour_.
 
 -   Si Mes notes sont satisfaisante et qu'elles vous donne l'envie de vous inscrire sur **Dyma**, je vous propose un lien de parrainage.
@@ -29,7 +29,7 @@ sudo apt-get install -y nodejs
 
 1. Un IDE va vous permettre de saisir du code avec une coloration syntaxique qui va très franchement grandement nous aider.
 
-> J'utilise **Visual Studio Code** très réputer et gratuit. Pour une fois que Microsoft nous propose quelques chose de gratuit, on ne va pas s'en privée.
+> J'utilise **Visual Studio Code** très réputé et gratuit. Pour une fois que Microsoft nous propose quelques chose de gratuit, on ne va pas s'en privée.
 
 [Lien vers la page officiel de Visual Studio Code](https://code.visualstudio.com/)
 
@@ -39,7 +39,7 @@ sudo apt-get install -y nodejs
 
 -   Node n'est en aucun cas un langage. **Vu qu'il utilise le JavaScript**.
 -   Node n'est pas non plus un framework. **Il n'offre pas que des fonctionnalités**
--   Node **est un enviroonnement serveur d'exécution pour le JavaScript**
+-   Node **est un environnement serveur d'exécution pour le JavaScript**
 
 ### Scalable pour un serveur NODE
 
@@ -55,7 +55,7 @@ sudo apt-get install -y nodejs
 
 #### Simulation d'un code bloquant / non bloquant
 
-> Sur la plateforme de Dyma l'exemple pour expliquer un javascript un programme bloquant d'un programme non bloquant, est extrêmement simple à mettre en place.
+> Sur la plateforme de Dyma l'exemple pour expliquer en javascript un programme bloquant d'un programme non bloquant, est extrêmement simple à mettre en place.
 
 ```js
 // Code non bloquant dit "Asynchrone"

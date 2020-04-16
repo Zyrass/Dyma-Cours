@@ -1,6 +1,6 @@
 # Formation NodeJS
 
-> Ces notes ont été prises pendant mon apprentissage sur Node.JS sur la plateforme de [DYMA.fr](https://dyma.fr) > **En aucun cas ces notes ont pour vocation de voler le travail** réaliser par ces formateurs talentueux, **mais de promouvoir la qualité de leur travail**.
+> Ces notes ont été prises pendant mon apprentissage sur Node.JS sur la plateforme de [DYMA.fr](https://dyma.fr) > **En aucun cas ces notes ont pour vocation de voler le travail** réalisé par ces formateurs talentueux, **mais de promouvoir la qualité de leur travail**.
 > _Si je suis capable de ré-expliquer des notions c'est que leurs formations vaut très franchement le détour_.
 
 -   Si Mes notes sont satisfaisante et qu'elles vous donne l'envie de vous inscrire sur **Dyma**, je vous propose un lien de parrainage.
@@ -261,7 +261,7 @@ npm uninstall -g nom_du_cli
 > nous avons obligatoirement du saisir comme commande `node app.js`.
 > Il est temps de revoir ça différemment.
 
--   Installation d'un script pour chargé notre fichier plus simplement.
+-   Installation d'un script pour charger notre fichier plus simplement.
 
 Exemple d'un fichier **package.json** au début
 
@@ -291,7 +291,7 @@ On ajoute dans la partie **scripts** : `"start": "node app.js"`
 }
 ```
 
-Ainsi, une fois la modification faite, la commande a exécuter était/sera :
+Ainsi, une fois la modification faite, la commande à exécuter était/sera :
 
 ```sh
 # Avant :
@@ -302,7 +302,7 @@ npm start
 ```
 
 > **Note importante** : On a indiqué **"start"**.
-> Mais on aurait bien pu indiquer autre chose à la différence que la commande a exécuter sera elle différente.
+> Mais on aurait bien pu indiquer autre chose à la différence que la commande sera elle différente.
 
 Pour l'exemple :
 
