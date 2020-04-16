@@ -1,6 +1,6 @@
 # Formation NodeJS
 
-> Ces notes ont été prises pendant mon apprentissage sur Node.JS sur la plateforme de [DYMA.fr](https://dyma.fr) > **En aucun cas ces notes ont pour vocation de voler le travail** réaliser par ces formateurs talentueux, **mais de promouvoir la qualité de leur travail**.
+> Ces notes ont été prises pendant mon apprentissage sur Node.JS sur la plateforme de [DYMA.fr](https://dyma.fr) > **En aucun cas ces notes ont pour vocation de voler le travail** réalisé par ces formateurs talentueux, **mais de promouvoir la qualité de leur travail**.
 > _Si je suis capable de ré-expliquer des notions c'est que leurs formations vaut très franchement le détour_.
 
 -   Si Mes notes sont satisfaisante et qu'elles vous donne l'envie de vous inscrire sur **Dyma**, je vous propose un lien de parrainage.
