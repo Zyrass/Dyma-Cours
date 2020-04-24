@@ -39,6 +39,11 @@ const express = require('express');
 
 #### Les 3 méthodes à connaître
 
+```diff
+- Attention, il faudra toujours terminer une méthode par la gestion de l'erreur. Ce qui nous évitera une boucle infini.
++ En revanche, pour les exemples proposé, seul le tout dernier bénéficiera d'un code correcte. 
+```
+
 Les trois méthodes ci-dessous sont les points les plus imortant à comprendre.
 
 | #   | Nom                            | Description                              |
@@ -272,9 +277,10 @@ npm start
 
 > Ainsi, à chaque modification le serveur sera automatiquement rechargé, il nous faudra simplement appuyer sur la touche **F5** pour ré-actualiser la page.
 
-### Découverte du module natif : path
+### Découverte du module natif de Node.js : path
 
-Pour utiliser ce module, il va nous faudra dans une premier temps l'importer.
+Ce petit détour est simplement duau faite qu'on aura besoin très régulièrement de ce module.
+Pour utiliser ce module, il nous faudra dans une premier temps l'importer.
 Bon ça on sait faire.
 
 ```js
@@ -302,11 +308,11 @@ const extDuFichier = path.dirname('./node_modules/express/index.js');
 3. **path.isAbsolute** : Permet de tester si une url est absolue ou non.
 
 ```js
-const isAbsolut1 = path.isAbsolute('./node_modules/express/index.js');
+const isAbsolute1 = path.isAbsolute('./node_modules/express/index.js');
 // Renverra : false (./etc...)
 ```
 ```js
-const isAbsolut2 = path.isAbsolute('/node_modules/express/index.js');
+const isAbsolute2 = path.isAbsolute('/node_modules/express/index.js');
 // Renverra : true (/etc...)
 ```
 
@@ -374,7 +380,7 @@ const resolve3 = path.resolve('root', 'a/b/', '../c/d.txt');
 1. Pas besoin de voir la base de la méthode **send()**, elle a été vu un peu plus tôt.
 
 > En revanche nous pouvons passez du **TEXTE**, des **TAGS** ou bien du **JSON**.
-> Selon la ressource passé en argument, celle-ci sera directement converti dans le format souhaité
+> Selon la ressource passé en argument, celle-ci sera directement converti en HTML ou bien au format JSON
 
 - Du TEXTE :
 
@@ -493,71 +499,117 @@ const express = require('express');
 const app = express();
 
 // Du HTML
-app.get('/', (req, res, next) => {
-	res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Méthodes sur l'objet res</title>
-      </head>
-      <body>
-        <h1>Lien vers des pages utilisant des méthodes de l'objet response</h1>
-        <p>Il faudra que vous revenez en arrière pour accéder ailleur</p>
-        <ul>
-          <li><a href="/text">text</a></li>
-          <li><a href="/json1">json</a></li>
-          <li><a href="/json2">json avec tableau</a></li>
-          <li><a href="/file">Utilisation d'un fichier directement </a></li>
-        </ul>
-      </body>
-    </html>
-  `);
-});
+app.get(
+	'/',
+	(req, res, next) => {
+		res.send(`
+			<!DOCTYPE html>
+			<html>
+				<head>
+					<title>Méthodes sur l'objet res</title>
+				</head>
+				<body>
+					<h1>Lien vers des pages utilisant des méthodes de l'objet response</h1>
+					<p>Il faudra que vous revenez en arrière pour accéder ailleur</p>
+					<ul>
+						<li><a href="/text">text</a></li>
+						<li><a href="/json1">json</a></li>
+						<li><a href="/json2">json avec tableau</a></li>
+						<li><a href="/file">Utilisation d'un fichier directement </a></li>
+					</ul>
+				</body>
+			</html>
+		`);
+	},
+	(error) => {
+		if (error) throw error;
+		res.sendStatus(500);
+	}
+);
 
 // du text/plain
-app.get('/text', (req, res, next) => {
-	res.set('Content-Type', 'text/plain; charset=utf-8');
-	res.set({
-		'Option-1': "J'adore apprendre les langages portant sur le JavaScript",
-		'Option-2': 'Surtout sur la plateforme de Dyma.fr',
-  });
-  res.append("prop-append", "Je suis append et je passe en dernier");
-	res.send(
-		'Je suis du text avec un content-type défini sur text/plain. Mais aussi il y a 2 options définis dans le header. (Option-1 et Option-2)'
-	);
-	next();
-});
+app.get(
+	'/text',
+	(req, res, next) => {
+		res.set('Content-Type', 'text/plain; charset=utf-8');
+		res.set({
+			'Option-1':
+				"J'adore apprendre les langages portant sur le JavaScript",
+			'Option-2': 'Surtout sur la plateforme de Dyma.fr',
+		});
+		res.append('prop-append', 'Je suis append et je passe en dernier');
+		res.send(
+			'Je suis du text avec un content-type défini sur text/plain. Mais aussi il y a 2 options définis dans le header. (Option-1 et Option-2)'
+		);
+		next();
+	},
+	(error) => {
+		if (error) throw error;
+		res.sendStatus(500);
+	}
+);
 
 // Du JSON
-app.get('/json1', (req, res, next) => {
-	res.send({ Langage: 'javascript' });
-	next();
-});
+app.get(
+	'/json1',
+	(req, res, next) => {
+		const myJSON = { Langage: 'javascript' };
+		res.send(myJSON);
+		console.log(JSON.stringify(myJSON));
+		next();
+	},
+	(error) => {
+		if (error) throw error;
+		res.sendStatus(500);
+	}
+);
 
 // Un tableau avec du JSON
-app.get('/json2', (req, res, next) => {
-	res.send([
-		{
-			name: 'Alain',
-			age: 36,
-		},
-		{
-			name: 'Anthony',
-			age: 31,
-		},
-	]);
-	next();
-});
-
-// Un fichier externe
-app.get('/file', (req, res, next) => {
-	res.sendFile(path.join(__dirname, 'folder-test', 'file-text.txt'));
-});
+app.get(
+	'/json2',
+	(req, res, next) => {
+		res.send([
+			{
+				name: 'Alain',
+				age: 36,
+			},
+			{
+				name: 'Anthony',
+				age: 31,
+			},
+		]);
+		next();
+	},
+	(error) => {
+		if (error) throw error;
+		res.sendStatus(500);
+	}
+);
 
 // Une erreur 404
-app.get('/login', (req, res, next) => {
-	res.sendStatus(404);
-});
+app.get(
+	'/login',
+	(req, res, next) => {
+		res.sendStatus(404);
+	},
+	(error) => {
+		if (error) throw error;
+		res.sendStatus(500);
+	}
+);
+
+// Un fichier externe
+app.get(
+	'/file',
+	(req, res, next) => {
+		res.sendFile(path.join(__dirname, 'folder-test', 'file-text.txt'));
+	},
+	(error) => {
+		if (error) throw error;
+		res.sendStatus(500);
+	}
+);
 
 app.listen(5000, 'localhost');
+
 ```
