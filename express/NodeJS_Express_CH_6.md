@@ -121,6 +121,22 @@ app.delete( /* Du code ... */ ); // Supprimer la data
 
 ##### 3 - app.route
 
+Représentation d'un layer de type **ROUTE**
+
+```js
+const route = new Route();
+{
+	Path: '/xxx';
+	Handle: route.dispatch;
+	// route.dispatch créer une STACK de plusieurs LAYER
+}
+
+{
+	method: 'get';
+	handle: fn;
+}
+```
+
 Exemple d'une route qui sera afficher différemment pour une meilleure lecture.
 
 ```js
