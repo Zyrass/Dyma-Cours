@@ -1,12 +1,5 @@
 # Formation NodeJS - Express
 
-> Ces notes ont été prises pendant mon apprentissage sur Node.JS et ici plus particulièrement Express sur la plateforme de [DYMA.fr](https://dyma.fr) > **En aucun cas ces notes ont pour vocation de voler le travail** réalisé par ces formateurs talentueux, **mais de promouvoir la qualité de leur travail**.
-> _Si je suis capable de ré-expliquer des notions c'est que leurs formations vaut très franchement le détour_.
-
--   Si Mes notes sont satisfaisante et qu'elles vous donne l'envie de vous inscrire sur **Dyma**, je vous propose un lien de parrainage.
--   **_J'insiste qu'il est aucunement obligatoire de suivre mon lien._** :
--   Si vous tenez tout de même à me remercier pour cette prise de note, [cliquez ici pour que je vous parraine](https://dyma.fr/r/5d52bd274e7aec730eb90fde)
-
 ## Chapitre - 06 - (Suite de la formation sur NodeJS)
 
 > Si vous ne maitriser pas la base de Node.js, vous pouvez continuer mais il y aura des features que vous ne comprendrez pas.
