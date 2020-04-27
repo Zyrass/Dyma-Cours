@@ -1,20 +1,20 @@
-# Formation NodeJS - Express
+# Formation NodeJS
 
-## Chapitre - 06 - (Suite de la formation sur NodeJS)
+## Chapitre - 06 - Express
 
 > Si vous ne maitriser pas la base de Node.js, vous pouvez continuer mais il y aura des features que vous ne comprendrez pas.
 
 ### Qu'es-ce que Express ?
 
-- Express est un framework pour Node.js. C'est le plus utilisé à travers le monde.
-- Express remplace le **callback** de manière très efficace.
-- Express utilise un modèle de **stack**.
+-   Express est un framework pour Node.js. C'est le plus utilisé à travers le monde.
+-   Express remplace le **callback** de manière très efficace.
+-   Express utilise un modèle de **stack**.
 
 > La **stack** est le **3ème paramètre** du **callback**, son nom est **next**.
 > En gros, on retrouvera comme paramètre, en premier **req**, en second, **res** et enfin **next**.
 
-- Lien de la doc officiel à cette adresse : [https://expressjs.com/](https://expressjs.com)
-- Lien de la même doc, traduite en français : [https://expressjs.com/fr/](https://expressjs.com/fr/)
+-   Lien de la doc officiel à cette adresse : [https://expressjs.com/](https://expressjs.com)
+-   Lien de la même doc, traduite en français : [https://expressjs.com/fr/](https://expressjs.com/fr/)
 
 Pour pouvoir utiliser Express, nous allons devoir utiliser **NPM**.
 Express est une dépendance qu'il nous faudra installer via la commande :
@@ -34,7 +34,7 @@ const express = require('express');
 
 ```diff
 - Attention, il faudra toujours terminer une méthode par la gestion de l'erreur. Ce qui nous évitera une boucle infini.
-+ En revanche, pour les exemples proposé, seul le tout dernier bénéficiera d'un code correcte. 
++ En revanche, pour les exemples proposé, seul le tout dernier bénéficiera d'un code correcte.
 ```
 
 Les trois méthodes ci-dessous sont les points les plus imortant à comprendre.
@@ -63,12 +63,12 @@ const express = require('express');
 const app = express();
 
 const testOne = (req, res, next) => {
-  console.log( req.url );
-  console.log( next );
-  next();
-}
+	console.log(req.url);
+	console.log(next);
+	next();
+};
 
-app.use( testOne );
+app.use(testOne);
 ```
 
 2. Ex n°2 - Avec un **path** dans **app.use()** en plus de la fonction de callback.
@@ -93,25 +93,25 @@ app.use( "/api", testTwoWithAPI );
 
 Voici la liste des méthodes qui sont utilisé pour soumettre une requête :
 
-- **GET** : La méthode GET demande une représentation de la ressource spécifiée. *Les requêtes GET doivent uniquement être utilisées afin de récupérer des données*.
-- **HEAD** : La méthode HEAD demande une réponse identique à une requête GET pour laquelle on aura omis le corps de la réponse (on a uniquement l'en-tête).
-- **POST** : *La méthode POST est utilisée pour envoyer une entité vers la ressource indiquée*. Cela  entraîne généralement un changement d'état ou des effets de bord sur le serveur.
-- **PUT** : *La méthode PUT remplace toutes les représentations actuelles de la ressource visée par le contenu de la requête*.
-- **DELETE** : *La méthode DELETE supprime la ressource indiquée*.
-- **CONNECT** : *La méthode CONNECT établit un tunnel vers le serveur identifié par la ressource cible*.
-- **OPTIONS** : *La méthode OPTIONS est utilisée pour décrire les options de communications avec la ressource visée*.
-- **TRACE** : *La méthode TRACE réalise un message de test aller/retour en suivant le chemin de la ressource visée*.
-- **PATCH** : *La méthode PATCH est utilisée pour appliquer des modifications partielles à une ressource*.
+-   **GET** : La méthode GET demande une représentation de la ressource spécifiée. _Les requêtes GET doivent uniquement être utilisées afin de récupérer des données_.
+-   **HEAD** : La méthode HEAD demande une réponse identique à une requête GET pour laquelle on aura omis le corps de la réponse (on a uniquement l'en-tête).
+-   **POST** : _La méthode POST est utilisée pour envoyer une entité vers la ressource indiquée_. Cela entraîne généralement un changement d'état ou des effets de bord sur le serveur.
+-   **PUT** : _La méthode PUT remplace toutes les représentations actuelles de la ressource visée par le contenu de la requête_.
+-   **DELETE** : _La méthode DELETE supprime la ressource indiquée_.
+-   **CONNECT** : _La méthode CONNECT établit un tunnel vers le serveur identifié par la ressource cible_.
+-   **OPTIONS** : _La méthode OPTIONS est utilisée pour décrire les options de communications avec la ressource visée_.
+-   **TRACE** : _La méthode TRACE réalise un message de test aller/retour en suivant le chemin de la ressource visée_.
+-   **PATCH** : _La méthode PATCH est utilisée pour appliquer des modifications partielles à une ressource_.
 
 Exemple On utilisera ça comme ça :
 
 ```js
 // ... du code
 
-app.get( /* Du code ... */ ); // Lire de la data
-app.post( /* Du code ... */ ); // Envoyer de la data
-app.put( /* Du code ... */ ); // Mettre à jour la data
-app.delete( /* Du code ... */ ); // Supprimer la data
+app.get(/* Du code ... */); // Lire de la data
+app.post(/* Du code ... */); // Envoyer de la data
+app.put(/* Du code ... */); // Mettre à jour la data
+app.delete(/* Du code ... */); // Supprimer la data
 // Même chose poour les autres méthodes...
 
 // du code ...
@@ -139,21 +139,22 @@ Exemple d'une route qui sera afficher différemment pour une meilleure lecture.
 
 ```js
 // Syntaxe illisible
-app.route('/exemple').get((req, res, next) => {
-  /* du code */
-}).post((req, res, next) => {
-  /* du code */
-})
+app.route('/exemple')
+	.get((req, res, next) => {
+		/* du code */
+	})
+	.post((req, res, next) => {
+		/* du code */
+	});
 
 // Syntaxe propre
-app
-  .route("/exemple")
-  .get((req, res, next) => {
-    /* Du code */
-  })
-  .post((req, res, next) => {
-    /* Du code */
-  })
+app.route('/exemple')
+	.get((req, res, next) => {
+		/* Du code */
+	})
+	.post((req, res, next) => {
+		/* Du code */
+	});
 ```
 
 #### Node VS Express
@@ -167,26 +168,24 @@ const http = require('http');
 const server = http.createServer();
 
 server.on('request', (req, res) => {
+	const url = req.url;
 
-  const url = req.url;
+	if (url === '/') {
+		res.writeHead(200, {
+			'Content-Type': 'text/plain; charset=utf-8',
+		});
+		res.write('Bonjour Node.js');
+		res.end();
+	} else {
+		res.writeHead(404, {
+			'Content-Type': 'text/plain; charset=utf-8',
+		});
+		res.write("Je ne suis plus sur la page d'accueil");
+		res.end();
+	}
+});
 
-  if ( url === "/" ) {
-    res.writeHead(200, {
-      "Content-Type": "text/plain; charset=utf-8"
-    })
-    res.write('Bonjour Node.js');
-    res.end();
-  } else {
-    res.writeHead(404, {
-      "Content-Type": "text/plain; charset=utf-8"
-    })
-    res.write("Je ne suis plus sur la page d'accueil");
-    res.end();
-  }
-
-})
-
-server.listen(5000, "0.0.0.0");
+server.listen(5000, '0.0.0.0');
 ```
 
 ##### Version : EXPRESS
@@ -195,15 +194,15 @@ server.listen(5000, "0.0.0.0");
 const express = require('express');
 const app = express();
 
-app.get( '/', (req, res, next) => {
-  res.writeHead(200, {
-    "Content-Type": "text/plain; charset=utf-8"
-  })
-  res.write('Bonjour Express');
-  res.end();
-})
+app.get('/', (req, res, next) => {
+	res.writeHead(200, {
+		'Content-Type': 'text/plain; charset=utf-8',
+	});
+	res.write('Bonjour Express');
+	res.end();
+});
 
-app.listen( 5001, "0.0.0.0" );
+app.listen(5001, '0.0.0.0');
 ```
 
 ### Découverte de la méthode send() d'Express
@@ -220,32 +219,32 @@ La méthode **send()** est mise est un raccourci de ces trois méthodes.
 const express = require('express');
 const app = express();
 
-app.get( '/', (req, res, next) => {
-  res.send("Bonjour Express");
-})
+app.get('/', (req, res, next) => {
+	res.send('Bonjour Express');
+});
 
-app.listen( 5001, "0.0.0.0" );
+app.listen(5001, '0.0.0.0');
 ```
 
 ### Utilisation de nodemon
 
 Nous en avons parlé dans un chapitre précédent. Autant faire un petit rappel, ça ne fait pas de mal.
 
-- On commence par installer la dépendance **nodemon**
-- On modifie le fichier **package.json**
-- on lance le serveur.
+-   On commence par installer la dépendance **nodemon**
+-   On modifie le fichier **package.json**
+-   on lance le serveur.
 
 ```sh
 # Installation en Global
 npm install -g nodemon
-		
+
 # Installation comme dépendance de développement
 npm install --save-dev nodemon
 ```
 
 Dans le fichier **package.json**, on va modifier le script start qu'on avait créé.
 
-- Avec Node (Avant)
+-   Avec Node (Avant)
 
 ```js
 "scripts": {
@@ -253,7 +252,7 @@ Dans le fichier **package.json**, on va modifier le script start qu'on avait cr�
 }
 ```
 
-- Avec Nodemon (Après)
+-   Avec Nodemon (Après)
 
 ```js
 "scripts": {
@@ -261,7 +260,7 @@ Dans le fichier **package.json**, on va modifier le script start qu'on avait cr�
 }
 ```
 
-- On aura plus qu'à lancer la commande :
+-   On aura plus qu'à lancer la commande :
 
 ```sh
 # Dans un terminal
@@ -304,6 +303,7 @@ const extDuFichier = path.dirname('./node_modules/express/index.js');
 const isAbsolute1 = path.isAbsolute('./node_modules/express/index.js');
 // Renverra : false (./etc...)
 ```
+
 ```js
 const isAbsolute2 = path.isAbsolute('/node_modules/express/index.js');
 // Renverra : true (/etc...)
@@ -312,10 +312,11 @@ const isAbsolute2 = path.isAbsolute('/node_modules/express/index.js');
 4. **path.join** : Permet de définir des url sans erreur possible. Avec une petite subtilité topissime.
 
 ```js
-const join1 = path.join( __dirname, 'node_modules', 'express', 'index.js');
+const join1 = path.join(__dirname, 'node_modules', 'express', 'index.js');
 // Renverra : chemin complet + l'ajout de /node_modules/express/index.js
 ```
-> Avec la petite subtilité ci-dessous : 
+
+> Avec la petite subtilité ci-dessous :
 
 ```js
 const join2 = path.join('/a', 'b', 'c/d', 'e', '..');
@@ -329,11 +330,12 @@ const join2 = path.join('/a', 'b', 'c/d', 'e', '..');
 const normalize = path.normalize('/a/b/c/d/e/..');
 // Renverra : 'a/b/c/d/e'
 ```
+
 1. **path.parse** : Permet de dispatcher une url afin d'en extraire chacun de ces éléments.
 
 ```js
-const join3 = path.join( __dirname, 'node_modules', 'express', 'index.js');
-const parse = path.parse( join3 );
+const join3 = path.join(__dirname, 'node_modules', 'express', 'index.js');
+const parse = path.parse(join3);
 /**
  * Reverra :
  * ----------------------------------------------------------------------------
@@ -347,6 +349,7 @@ const parse = path.parse( join3 );
  * ----------------------------------------------------------------------------
  **/
 ```
+
 7. **path.resolve** : Permet de créer/écraser
 
 ```js
@@ -375,30 +378,30 @@ const resolve3 = path.resolve('root', 'a/b/', '../c/d.txt');
 > En revanche nous pouvons passez du **TEXTE**, des **TAGS** ou bien du **JSON**.
 > Selon la ressource passé en argument, celle-ci sera directement converti en HTML ou bien au format JSON
 
-- Du TEXTE :
+-   Du TEXTE :
 
 ```js
-res.send("Je suis du texte");
+res.send('Je suis du texte');
 // Renverra :
 // Une chaine de caractère au format text/plain
 ```
 
-- Du HTML :
+-   Du HTML :
 
 ```js
-res.send("<html><body><h1>Coucou</h1></body></html>");
+res.send('<html><body><h1>Coucou</h1></body></html>');
 // Renverra :
 // Une interprétation du HTML au format text/html
 ```
 
-- Du JSON :
+-   Du JSON :
 
 > En tant normal nous serions obligé de sérialiser ce format pour pouvoir l'exploiter en utilisant : `JSON.stringify( data )`
 
 Avec la méthode **send()**, nous n'avons pas besoin de le faire, la méthode le fait pour nous.
 
 ```js
-res.send( { "langage": "Je suis du json" } );
+res.send({ langage: 'Je suis du json' });
 // Renverra :
 // Du JSON au format application/json
 ```
@@ -408,56 +411,56 @@ res.send( { "langage": "Je suis du json" } );
 ```
 
 ```js
-res.send( [ { "langage": "html" }, { "framework": "react" } ] );
+res.send([{ langage: 'html' }, { framework: 'react' }]);
 // Renverra :
 // Du JSON au format application/json
 ```
 
-2. La méthode **json()**, est utilisé comme son nom l'indique pour afficher du json tout comme la méthode **send()**. 
+2. La méthode **json()**, est utilisé comme son nom l'indique pour afficher du json tout comme la méthode **send()**.
 
 > La logique veut qu'on utilise cette méthode pour voir immédiatement à l'oeil, ce qu'il sera retourné.
 
 ```js
-res.json( { "langage": "Je suis du json" } );
+res.json({ langage: 'Je suis du json' });
 // Renverra :
 // Du JSON au format application/json
 ```
 
-3. La méthode **sendStatus()**, permet de définir un certain code d'erreur. 
+3. La méthode **sendStatus()**, permet de définir un certain code d'erreur.
 
 > Déjà vu avec Node.js et la méthode **writeHead()**.
 > Rappel d'un lien wikipédia parlant des codes d'erreurs : [https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP](https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP)
 
 ```js
-res.sendStatus( 503 );
-// Renverra automatiquement à l'écran : Service Unavailable 
+res.sendStatus(503);
+// Renverra automatiquement à l'écran : Service Unavailable
 
-res.sendStatus( 500 );
-// Renverra automatiquement à l'écran : Internal Server Error 
+res.sendStatus(500);
+// Renverra automatiquement à l'écran : Internal Server Error
 
-res.sendStatus( 404 );
+res.sendStatus(404);
 // Renverra automatiquement à l'écran : Not Found
 
-res.sendStatus( 403 );
+res.sendStatus(403);
 // Renverra automatiquement à l'écran : Forbidden
 
-res.sendStatus( 402 );
+res.sendStatus(402);
 // Renverra automatiquement à l'écran : Payment Required
 
-res.sendStatus( 401 );
-// Renverra automatiquement à l'écran : Unauthorized 
+res.sendStatus(401);
+// Renverra automatiquement à l'écran : Unauthorized
 
-res.sendStatus( 400 );
-// Renverra automatiquement à l'écran : Bad Request 
+res.sendStatus(400);
+// Renverra automatiquement à l'écran : Bad Request
 ```
 
-4. La méthode **sendFile()** permet de retourner un fichier. 
+4. La méthode **sendFile()** permet de retourner un fichier.
 
-> L'utilisation du module **path.join()** avec pour premier argument **__dirname**, nous obtiendrons très simplement le fichier en question via les autres arguments.
+> L'utilisation du module **path.join()** avec pour premier argument **\_\_dirname**, nous obtiendrons très simplement le fichier en question via les autres arguments.
 
 ```js
-res.sendFile( path.join( __dirname, "folder-test", "file-test.txt" ) );
-// Renverra le contenu du fichier avec le header fixé à text/plain 
+res.sendFile(path.join(__dirname, 'folder-test', 'file-test.txt'));
+// Renverra le contenu du fichier avec le header fixé à text/plain
 ```
 
 5. La méthode **set()** qui permet de définir un ou plusieurs headers.
@@ -468,8 +471,8 @@ res.set('Content-Type', 'text/plain');
 
 // 2 Headers
 res.set({
-  'Content-Type': 'text/plain',
-  'Option-1': 'Salut la terre',
+	'Content-Type': 'text/plain',
+	'Option-1': 'Salut la terre',
 });
 ```
 
@@ -480,8 +483,10 @@ res.set({
 ```
 
 ```js
-res.set("Etape-1": "Je suis impérativement écrite en 1er");
-res.append("Etape-2": "Et moi je suis juste après pour éviter que set() ne m'écrase");
+res.set(('Etape-1': 'Je suis impérativement écrite en 1er'));
+res.append(
+	('Etape-2': "Et moi je suis juste après pour éviter que set() ne m'écrase")
+);
 ```
 
 #### Exemple d'un code qui fait tout ce qui a été vu ici.
@@ -604,5 +609,4 @@ app.get(
 );
 
 app.listen(5000, 'localhost');
-
 ```

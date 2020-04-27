@@ -1,6 +1,6 @@
-# Formation NodeJS - Express
+# Formation NodeJS
 
-## Chapitre - 08 - (Suite de la formation sur NodeJS)
+## Chapitre - 08 - Express suite
 
 ### Les middlewares
 

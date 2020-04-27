@@ -1,6 +1,6 @@
-# Formation NodeJS - Express
+# Formation NodeJS
 
-## Chapitre - 07 - (Suite de la formation sur NodeJS)
+## Chapitre - 07 - Express suite
 
 Express permet l'utilisation de **template**, en sommes nous allons pouvoir dynamiquement modéliser des pages selon la demande de l'utilisateur.
 Il existe une très longues liste de template pour Express.
