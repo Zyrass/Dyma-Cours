@@ -1,30 +1,33 @@
 # Formation NodeJS
 
 > Le chapitre 10 n'existe pas, il s'agit d'un projet guidé disponible sur DYMA.
+> Le projet c'est de reprendre les bases de Twitter.
 
 ## Chapitre - 11 - MongoDB
 
 ### Qu'est ce que MongoDB ?
 
-C'est un **service** (_souvent appelé **processus**_) que l'on va utilisé et qui tournera en tâche de fond (_arrière-plan_). Lorsqu'on aura besoin d'interagir avec MongoDB, celui-ci sera déjà disponible et nous pourrons exécuter tout un tas de commande selon nos besoins.
+C'est un **service** (_souvent appelé **processus**_) que l'on va utilisé et qui tournera en tâche de fond (_arrière-plan_). 
+Lorsque j'aurais besoin d'interagir avec MongoDB, celui-ci sera déjà disponible et je pourrai exécuter tout un tas de commande selon mes besoins.
 
-MongoDB utilise le **NOSQL** qui est beaucoup plus flexibles. Avec **MySQL** une fois une structure définit, _il est assez fastidieux de changer cette dernière_. Avec le **NOSQL** c'est une toute autre histoire, un quelconque changement se fait très simplement.
+MongoDB utilise le **NOSQL** qui est beaucoup plus flexibles. Avec **MySQL** une fois la structure définit, _il sera assez fastidieux de changer cette dernière_.
+Avec le **NOSQL** c'est une toute autre histoire, un quelconque changement se fera lui très simplement.
 
 #### Pourquoi utiliser MongoDB ?
 
 > Avant tout, je veux me former à la stack : **M.E.R.N** puis **M.E.V.N** et enfin **M.E.A.N**.
 > Pour celà, je dois apprendre **MongoDB**, **Express**, **React** et **Node**.
-> Ma ça reste ma démarche personnel.
+> Mais ça reste une démarche personnel.
 
-Je dirais que dans un premier temps, pour un développeur **fullstack JavaScript**, l'avantage d'utiliser MongoDB est que le format utilisé est très ressemblant au **JSON**, son nom : le **BSON**.
+Donc pour de ce que j'ai compris, dans un premier temps, MongoDB est utile pour un développeur **fullstack JavaScript**, en effet 
+l'avantage indégniable d'utiliser MongoDB est que le format utilisé est très ressemblant au **JSON**, son nom : le **BSON**.
 Avec par exemple le **MySQL**, il faut apprendre une toute autre syntaxe... (_qui n'est pas si compliqué que ça_).
-Grâce au **BSON**, nous n'avons pas besoin de tergiverser côté **javascript**. L'utilisation du JSON est très simple.
+Grâce au **BSON**, je n'ai pas besoin de tergiverser côté **javascript**. L'utilisation du JSON est très simple.
 
-Le second point positif, j'en ai également parlé avant, il est inutile de passer des jours où des heures pour modéliser une structure de donnée.
+Le second point positif, j'en ai également parlé avant, c'est pour moi le meilleur.
+il est donc, inutile de passer des jours où des heures pour modéliser une structure de donnée.
 
-Pour finir la documentation est agréable à lire. La présentation quant à elle, est disponible en français !!
-
-[Lien de la présentation officiel en français](https://www.mongodb.com/fr)
+La présentation de MongoDB en français est disponible à cette adresse : [https://www.mongodb.com/fr](https://www.mongodb.com/fr)
 
 #### Les BDD existantes en NoSQL
 
@@ -63,10 +66,10 @@ Pour finir la documentation est agréable à lire. La présentation quant à ell
 ```
 
 > J'utilise, une distribution linux (ubuntu), donc je vais vais me rendre sur la documentation
-> et effectuer les étapes que j'ai à faire.
-> Je vous invite à lire la documentation et suivre ce qu'elle vous propose pour votre système d'exploitation.
+> et effectuer les étapes que j'ai à faire pour procédé correctement à son installation.
+> Je vous invite à lire la documentation et suivre ce qu'elle vous propose selon système d'exploitation.
 
-Une fois mongo installé sur son ordinateur, on peut saisir ces commandes :
+Une fois mongo installé sur mon ordinateur, je peux saisir ces commandes :
 
 ```sh
 # Obtenir de l'aide
@@ -78,9 +81,9 @@ mongo --version
 
 #### Lancer le processus MongoDB
 
-Comme il a été dit, nous pouvons lancer le service MongoDB qui sera exécuter en tâche de fond.
+Comme je l'ai dit, je peux lancer le service MongoDB qui sera exécuter en tâche de fond.
 
-> Les commandes visible dans le tableau ci-dessous seront utilisé essentiellement sur linux.
+> Les commandes visible dans le tableau ci-dessous seront utilisé essentiellement sur ma distribution de linux.
 > référez-vous à la documentation officiel pour tout autre support.
 
 | Commandes                     | Fonctionnement                             |
@@ -89,7 +92,7 @@ Comme il a été dit, nous pouvons lancer le service MongoDB qui sera exécuter 
 | `sudo service mongod stop`    | Permet de stopper le processus MongoDB.    |
 | `sudo service mongod restart` | Permet de rédémarrer le processus MongoDB. |
 
-Une fois le service démarrer, on peut directement lancer le **Shell** de MongoDB
+Une fois le service démarrer, je peux directement lancer le **Shell** de MongoDB
 
 ```sh
 # Lancer le shell de MongoDB une fois que le processus est actif
@@ -97,26 +100,28 @@ mongo
 ```
 
 ```diff
-- Le shell ne se lancera pas si le service (processus) n'est lui pas démarré ?
+- J'insiste sur le faite que le shell ne se lancera pas si le service (processus) n'est lui pas démarré !
 ```
 
 ### Création d'un utilisateur local
 
-Avant toute chose, on va créer un utilisateur qui aura des droits de type "**admin**".
-Nous allons devoir sélectionner la database **admin**. (Créé par défaut)
+Avant toute chose, je vais me créer un utilisateur qui aura des droits de type "**admin**".
+Pour ça, je vais devoir sélectionner la database **admin**. (Créé par défaut)
 
 ```sh
 # Sélection de la database admin
 use admin
 ```
 
--   Puis nous allons créer un utilisateur entre : **pseudo** et **mdp** vous saisirez votre mdp.
+Puis je vais créer un utilisateur.
+> entre : **pseudo** et **mdp** vous saisirez votre mdp.
 
 ```sh
 db.createUser({ user: "pseudo", pwd: "password", roles:["root"] })
 ```
 
-> Au cas ou si vous avez fais une erreur, vous pouvez supprimer l'utilisateur avec cette commande :
+Au cas ou si j'ai fais une erreur, et c'est sur que je vais en faire,
+je vais pouvoir supprimer l'utilisateur avec cette commande :
 
 ```sh
 # Supprimer un utilisateur
@@ -125,8 +130,8 @@ db.dropUser("nom_utilisateur")
 
 ### Zut, j'ai oublié le mot de passe...
 
-> Pas de panique, nous pouvons lister les utilisateurs existants :
-> Puis nous pourrons changer de mot de passe sans avoir à spécifier le mot de passe utilisé auparavant.
+> Pas de panique, je peux lister tous les utilisateurs existants :
+> Puis je pourrais changé de mot de passe sans avoir à spécifier le mot de passe utilisé auparavant.
 
 ```sh
 # Connaître la liste des utilisateurs
@@ -145,10 +150,10 @@ db.changeUserPassword("pseudo_a_changer", "azertyuiop")
 -   Chaque _databases_ peut acceuillir plusieurs **collections**.
 -   Ces mêmes _collections_ peuvent contenir plusieurs **documents**.
 
-Pour mieux comprendre, c'est une peut comme si nous avions une structure similaire à celle-ci.
+Pour mieux comprendre, c'est un peut comme si je définissais cette structure avec des dossiers:
 
 ```sh
-Database_1
+Database_1;
 |
 +--collection_a
 |  |
@@ -201,11 +206,11 @@ db.createCollection("users")
 ```
 
 > Des options existe en second paramètres,
-> veuillez vous référé à la documentation officiel ou bien le cours sur dyma traite assez bien du sujet.
+> Voir la documentation officiel ou bien le cours sur dyma qui traite assez bien du sujet.
 
 #### Voir les collections existantes
 
-On saisira cette commande pour voir quelles sont les collections existante.
+Je saisirai la méthode **getCollectionNames()** via une commande pour voir quelles sont les collections existante.
 Si rien ne s'affiche, c'est que la collection est actuellement vide.
 
 ```sh
@@ -215,9 +220,11 @@ db.getCollectionNames()
 
 #### Créer un document
 
-Pour cette étape rien de tel qu'un exemple à proprement parlé pour voir l'insertion.
+Pour cette étape rien de tel qu'un exemple à proprement parlé pour voir l'insertion et donc la création d'un nouveau document.
 
 Exemple ci-dessous avec des livres que j'ai en ma possession :
+
+> Juste avant, volontairement j'utilise des nom anglais, mais la database sera livres
 
 > Je vais ici créer trois collections :
 > 1 - books
@@ -225,7 +232,7 @@ Exemple ci-dessous avec des livres que j'ai en ma possession :
 > 3 - authors
 
 ```sh
-# 0 - On s'assure d'avoir bien la database "livres" de sélectionné
+# 0 - Je m'assure d'avoir bien la database "livres" de sélectionné
 use.livres
 
 # 1 - Création d'un document dans la collection "books".
@@ -239,7 +246,7 @@ db.editors.insertOne({
   nom: "Eyrolles"
 })
 
-# Création d'une collection "authors" et d'un document
+# 3 - Création d'une collection "authors" et d'un document
 db.authors.insertOne({
   nom: "Rimelé",
   prenom: "Rodolphe"
@@ -260,14 +267,15 @@ show collections
 
 ### Créer plusieurs documents
 
-> Comme on vient de le voir, pour créer un document on utilisera **insertOne()**.
-> En revanche nous allons voir ici comment créer plusieurs documents.
-> On utilisera **insertMany()**
+> Comme je viens de le voir, pour créer un document on utilisera **insertOne()**.
+> En revanche je peux aussi insérer directement plusieurs documents.
+> Ainsi j'utiliserais **insertMany()**
 
 Exemple visuel :
 
 ```sh
 # Création de 2 documents dans la collection books
+# Ces 2 documents sont dans un tableau
 db.books.insertMany([
   {
     titre: "CSS3 - Pratique du design web"
@@ -281,7 +289,7 @@ db.books.insertMany([
 #### Méthodes pour lire le contenu d'une collection
 
 Ajouter du contenu c'est la base, mais voir ce qu'il y a c'est aussi bien.
-Pour celà on va utiliser la méthode **find()** sans paramètre.
+Pour celà je dois utiliser la méthode **find()** sans paramètre pour voir tout le contenu de la collection.
 
 ```sh
 # Lire toute la collections books
@@ -294,7 +302,7 @@ db.editors.find()
 db.authors.find()
 ```
 
-> Nous pouvons visualiser le contenu avec plus d'un document plus proprement avec la méthode **pretty()**.
+> Je peux visualiser le contenu avec plus d'un document plus proprement avec la méthode **pretty()**.
 > Cette méthode sera déclenché à la toute fin.
 > Ainsi le code précédent dans la collection **books** donnerai :
 
@@ -370,7 +378,8 @@ db.books.find({ title: "CSS3 - Pratique du design web" })
 
 ### Découverte des requêtes de mise à jour
 
-On a déjà vu comment **créer** (create), **lire** (read) des données, passons à la **mise à jour** (update).
+J'ai donc déjà vu comment **créer** (create), **lire** (read) des données.
+Go voir comment marche la **mise à jour** (update).
 
 ```sh
 # La syntaxe se représente ainsi
@@ -378,8 +387,8 @@ db.nomDeLaCollection.updateOne( filtre, miseAjour, options )
 ```
 
 -   Le **filtre** permet simplement de sélectionner le document à mettre à jour
--   **miseAjour** correspond à ce que l'on va mettre à jour.. (**Important :** ne pas oublier **set**)
--   **options** permettent par exemple de créer un fichier si celui-ci n'existe pas
+-   **miseAjour** correspond à ce que je vais mettre à jour.. (**Important :** ne pas oublier **set**)
+-   **options** permets par exemple de créer un fichier si celui-ci n'existe pas
 
 Exemple avec l'ajout d'un autre livre que j'ai en ajoutant l'option **upsert** pour créer le document sachant qu'il n'existe pas.
 
@@ -437,8 +446,8 @@ db.books.replaceOne({title: "PHP 7 - avancé"}, {title: "Javascript pour les Kid
 
 ### Les requêtes de Suppression
 
-On arrive au bout de notre **CRUD** (_create, read, update et **delete**_).
-Limite on saura presque faire l'essentiel pour afficher modifier supprimer ou lire du contenu.
+J'arrive au bout du **CRUD** (_create, read, update et **delete**_).
+Limite je sais presque tout faire ou du moins l'essentiel pour afficher modifier supprimer ou lire du contenu.
 Le reste c'est des notions extrêmement avancé.
 
 Trois méthodes pour une suppression précises.
@@ -462,6 +471,7 @@ db.editors.drop()
 
 ### L'outil de Compass de MongoDB
 
-> Comme annoncé au tout début, nous pouvons utiliser **Compass** un outil qui est mit à dispositon de MongoDB, qui nous permettra de réaliser tout ce qui a été fait jusqu'à maintenant via une interface graphique très joliement faite d'ailleurs.
+> Comme annoncé au tout début, je vais utiliser **Compass** qui est un outil mit à dispositon de MongoDB.
+> Cet outil va me permettre de réaliser tout ce qui a été fait jusqu'à maintenant via une interface graphique.
 
 Le lien officiel ce trouve à cette adresse : [https://www.mongodb.com/products/compass](https://www.mongodb.com/products/compass)

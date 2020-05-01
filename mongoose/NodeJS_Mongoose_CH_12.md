@@ -4,10 +4,11 @@
 
 Mongoose ne peut aller sans MongoDB.
 
-Mongoose va nous permettre de modéliser des objets qui seront inscrit et enregistré dans la BDD. Ainsi on va pouvoir mettre en place facilement :
+Mongoose va nous permettre de modéliser des objets qui seront inscrit et enregistré dans la BDD.
+Ainsi on va pouvoir mettre en place facilement :
 
 -   des schémas
--   des validations
+-   des validations assez complexe
 -   des middlewares
 
 ### Installation de Mongoose
@@ -17,11 +18,64 @@ On va devoir utiliser le terminal pour installer la dépendance mongoose.
 ```sh
 # Installer mongoose
 npm i -D mongoose
+
 ```
+
+### Découverte et mise en place d'un dossier Sandbox.
+
+> Si vous avez suivit chaque étape, vous serez en mesure de créer cette architecture
+
+```sh
+|	|
+| + -- node_modules
+| + -- index.js # ou app.js
+| + -- package-lock.json # pour rappel, il sera créer automatiquement.
+| + -- package.json
+
+```
+
+-   Il faudra, avoir **Nodemon** d'installé,
+-   Il faudra penser à démarrer le processus de node. ( `sudo service mongod start` sur linux).
+-   De là, il va falloir suivre les étapes ci-dessous.
 
 ### Utilisation de mongoose dans un fichier
 
-Il nous faudra l'importer puis nous utiliserons ce genre de code :
+Il nous faudra l'importer pour l'utiliser... Rien de bien compliquer à notre niveau.
+~~On va dire c'est même une formalité~~.
+
+```js
+const mongoose = require('mongoose');
+```
+
+A ce moment nous allons pouvoir utiliser **mongoose**.
+
+Ici, nous allons devoir utiliser la méthode **connect()** de mongoose et de lui assigner une **URL mongoose**. (_J'appel ça comme ça mais le protocole utilisé ne sera pas **HTTP** mais **mongodb**_)...
+
+```diff
++ La méthode connect() retournera une promesse, et donc on va utiliser then/catch
+```
+
+En paramètre de cette URL, il y aura :
+
+1.  Notre nom d'utilisateur.
+    > **Celui qui a été créée quand on a saisit les identifiants de mongoDB**) (Voir le chapitre précédent au cas où.). On terminera par "**:"**"
+2.  Juste après les "**:**" nous définirons le mot de passe associé à cette l'utilisateur.
+    > On terminera cette fois par un "**@**"
+3.  A ce moment, on définit simplement l'adresse que l'on souhaite obtenir.
+    > Ici pour l'exemple, on aura : [localhost:27017/livres?authSource=admin]
+    1. **localhost** pas besoin d'expliqué normalement.
+    2. **27017** correspond au port par défaut de mongodb
+    3. **livres** correspond à la database livres qu'on a utilisé dans le chapitre précédent.
+
+```diff
+- Une erreur sera soulever par nodemon, pour fixer ça, il va nous falloir ajouter une option.
++ Cette options est visible dans le message d'erreur.
+```
+
+A cette instant on peut ajouter un **.then()** quand la promesse est résolue et
+un **.catch()** si celle-ci échoue.
+
+Ainsi donc, voici le rendu que j'ai à ce moment précis. (Mon pseudo et mdp sont imaginaire)
 
 ```js
 const mongoose = require('mongoose');
@@ -31,15 +85,13 @@ mongoose
 		'mongodb://Zyrass:Eléanore@localhost:27017/dyma?authSource=admin',
 		{
 			useNewUrlParser: true,
-			reconnectTries: 20, // retest de se connecter 20x
-			reconnectInterval: 500,
 		}
 	)
 	.then(() => {
-		console.log('Connexion OK !');
+		console.log('Connexion Ok');
 	})
-	.catch((err) => {
-		console.log(err);
+	.catch((error) => {
+		console.error(error);
 	});
 ```
 
@@ -87,17 +139,18 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 // définition d'un Schema
-const chapterSchema = schema({
+const booksSchema = schema({
 	title: { type: String, required: true },
-	nbOfLessons: Number,
+	nbOfPages: Number,
+	nbOfChapters: Number,
 	index: Number,
-	active: Boolean,
+	colors: Boolean,
 	infoId: schema.Types.ObjectId,
-	test: { type: {}, defaut: { auteur: 'Alain' } },
+	infos: { genre: String, auteur: String, defaut: { owner: 'Zyrass' } },
 });
 
 // Création d'un documents si il n'existe pas.
-const chapters = mongoose.model('toto', chapterSchema, 'chapters');
+const books = mongoose.model('toto', booksSchema, 'livres');
 
 mongoose
 	.connect(
@@ -109,7 +162,7 @@ mongoose
 	)
 	.then(() => {
 		console.log('Connexion Ok');
-		chapters.find({}, (erreur, documents) => {
+		books.find({}, (erreur, documents) => {
 			if (erreur) throw erreur;
 			console.log(documents);
 		});
