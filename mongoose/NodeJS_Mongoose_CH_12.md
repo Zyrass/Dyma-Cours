@@ -4,8 +4,8 @@
 
 Mongoose ne peut aller sans MongoDB.
 
-Mongoose va nous permettre de modéliser des objets qui seront inscrit et enregistré dans la BDD.
-Ainsi on va pouvoir mettre en place facilement :
+Mongoose va me permettre de modéliser des objets qui seront inscrit et enregistré dans la BDD.
+Ainsi je vais pouvoir mettre en place facilement :
 
 -   des schémas
 -   des validations assez complexe
@@ -13,17 +13,17 @@ Ainsi on va pouvoir mettre en place facilement :
 
 ### Installation de Mongoose
 
-On va devoir utiliser le terminal pour installer la dépendance mongoose.
+Je vais devoir utiliser le terminal pour installer la dépendance mongoose.
 
 ```sh
 # Installer mongoose
 npm i -D mongoose
-
 ```
 
 ### Découverte et mise en place d'un dossier Sandbox.
 
-> Si vous avez suivit chaque étape, vous serez en mesure de créer cette architecture
+> Si vous avez suivit chaque étape, vous serez en mesure de créer cette architecture 
+> qui sera utilisé à titre d'exemple pour se faire la main.
 
 ```sh
 |	|
@@ -31,25 +31,22 @@ npm i -D mongoose
 | + -- index.js # ou app.js
 | + -- package-lock.json # pour rappel, il sera créer automatiquement.
 | + -- package.json
-
 ```
 
--   Il faudra, avoir **Nodemon** d'installé,
--   Il faudra penser à démarrer le processus de node. ( `sudo service mongod start` sur linux).
--   De là, il va falloir suivre les étapes ci-dessous.
+-   Il faudra, avoir **Nodemon** d'installé, logiquement c'est déjà le cas.
+-   Il faudra que je pense à démarrer le processus de node. ( `sudo service mongod start` sur linux).
+-   De là, il va falloir que je suive les étapes ci-dessous.
 
 ### Utilisation de mongoose dans un fichier
 
-Il nous faudra l'importer pour l'utiliser... Rien de bien compliquer à notre niveau.
-~~On va dire c'est même une formalité~~.
+Il me faudra importer la dépendance pour pouvoir l'utiliser.
 
 ```js
 const mongoose = require('mongoose');
 ```
 
-A ce moment nous allons pouvoir utiliser **mongoose**.
-
-Ici, nous allons devoir utiliser la méthode **connect()** de mongoose et de lui assigner une **URL mongoose**. (_J'appel ça comme ça mais le protocole utilisé ne sera pas **HTTP** mais **mongodb**_)...
+Ici, je vais devoir utiliser la méthode **connect()** de mongoose et de lui assigner une **URL mongoose**.
+(_J'appel ça comme ça mais le protocole utilisé ne sera pas **HTTP://** mais **mongodb://**_)...
 
 ```diff
 + La méthode connect() retournera une promesse, et donc on va utiliser then/catch
@@ -57,11 +54,11 @@ Ici, nous allons devoir utiliser la méthode **connect()** de mongoose et de lui
 
 En paramètre de cette URL, il y aura :
 
-1.  Notre nom d'utilisateur.
-    > **Celui qui a été créée quand on a saisit les identifiants de mongoDB**) (Voir le chapitre précédent au cas où.). On terminera par "**:"**"
-2.  Juste après les "**:**" nous définirons le mot de passe associé à cette l'utilisateur.
+1.  Mon nom d'utilisateur.
+    > **Celui qui que j'ai créé quand j'ai saisi mes identifiants de mongoDB**) (Voir le chapitre précédent au cas où.). On terminera par "**:"**"
+2.  Juste après les "**:**" je définirais le mot de passe associé à cette l'utilisateur.
     > On terminera cette fois par un "**@**"
-3.  A ce moment, on définit simplement l'adresse que l'on souhaite obtenir.
+3.  A ce moment, je définis simplement l'adresse que je souhaite obtenir.
     > Ici pour l'exemple, on aura : [localhost:27017/livres?authSource=admin]
     1. **localhost** pas besoin d'expliqué normalement.
     2. **27017** correspond au port par défaut de mongodb
@@ -82,7 +79,7 @@ const mongoose = require('mongoose');
 
 mongoose
 	.connect(
-		'mongodb://Zyrass:Eléanore@localhost:27017/dyma?authSource=admin',
+		'mongodb://superman:azerty@localhost:27017/dyma?authSource=admin',
 		{
 			useNewUrlParser: true,
 		}
@@ -99,7 +96,7 @@ mongoose
 
 Grâce à Mongoose il est possible de structurer sa BDD grâce à un schéma qui définira une certaine structure qui devra être respecté.
 
-> MongoDB ne dispose pas de Schéma et donc il nous est indispensable d'utiliser mongoose pour en bénéficier.
+> MongoDB ne dispose pas de Schéma et donc il m'est indispensable d'utiliser mongoose pour en bénéficier.
 
 Les SchemaTypes permettent de forcer la saisit du'un type d'une quelconque propriété.
 
