@@ -536,9 +536,11 @@ app.get(
 			'Option-2': 'Surtout sur la plateforme de Dyma.fr',
 		});
 		res.append('prop-append', 'Je suis append et je passe en dernier');
-		res.send(
-			'Je suis du text avec un content-type défini sur text/plain. Mais aussi il y a 2 options définis dans le header. (Option-1 et Option-2)'
-		);
+		res.send(`
+			Je suis du text avec un content-type défini sur text/plain.
+			Mais aussi il y a 2 options définis dans le header.
+			(Option-1 et Option-2)
+		`);
 		next();
 	},
 	(error) => {
